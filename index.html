@@ -465,7 +465,7 @@ nav{padding:8px 0;flex:1}
         <div class="modal-field"><label>Datum & Uhrzeit</label><input id="at-datum" type="text" placeholder="25.03. 10:00"></div>
         <div class="modal-field"><label>Dauer</label><select id="at-dauer"><option>30 Min.</option><option>45 Min.</option><option>60 Min.</option><option>90 Min.</option></select></div>
         <div class="modal-field"><label>Person / Firma</label><input id="at-person" type="text" placeholder="Max Mustermann"></div>
-        <div class="modal-field"><label>Art</label><select id="at-art"><option>Erstgespräch</option><option>Strategie-Call</option><option>Kick-off</option><option>Nachfass-Call</option><option>Interview</option></select></div>
+        <div class="modal-field"><label>Art</label><select id="at-art"><option>Strategie-Call</option><option>Strategie-Call</option><option>Kick-off</option><option>Nachfass-Call</option><option>Interview</option></select></div>
         <div class="modal-field"><label>Status</label><select id="at-status"><option value="confirmed">Bestätigt</option><option value="pending">Ausstehend</option></select></div>
       </div>
       <div class="modal-btns"><button class="modal-btn-cancel" onclick="closeModal('modal-add-termin')">Abbrechen</button><button class="modal-btn-ok" onclick="addTermin()">Termin speichern →</button></div>
@@ -546,7 +546,7 @@ nav{padding:8px 0;flex:1}
       <div class="sc-body">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
           <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center"><div style="font-family:var(--serif);font-size:28px;color:var(--gold)" id="termine-week-count">5</div><div style="font-size:10px;color:var(--muted);margin-top:3px">Termine diese Woche</div></div>
-          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center"><div style="font-family:var(--serif);font-size:28px;color:var(--green)" id="termine-strategie-calle">3</div><div style="font-size:10px;color:var(--muted);margin-top:3px">Erstgespräche</div></div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center"><div style="font-family:var(--serif);font-size:28px;color:var(--green)" id="termine-strategie-calle">3</div><div style="font-size:10px;color:var(--muted);margin-top:3px">Strategie-Calle</div></div>
         </div>
         <div style="background:var(--gold-dim);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:12px;font-size:12px">
           <div style="font-weight:600;color:var(--gold);margin-bottom:6px">Calendly-Link teilen</div>
@@ -680,7 +680,7 @@ nav{padding:8px 0;flex:1}
       <div class="sc-head"><span class="sc-title">Qualifizierungs-Regeln</span></div>
       <div class="sc-body">
         <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="background:var(--green-l);border:1px solid rgba(46,139,90,.2);border-radius:8px;padding:10px 12px;font-size:12px"><div style="font-weight:600;color:var(--green);margin-bottom:3px">Score ≥ 5 — Hot Lead</div><div style="color:var(--muted2)">Calendly-Link erscheint sofort → Erstgespräch buchbar</div></div>
+          <div style="background:var(--green-l);border:1px solid rgba(46,139,90,.2);border-radius:8px;padding:10px 12px;font-size:12px"><div style="font-weight:600;color:var(--green);margin-bottom:3px">Score ≥ 5 — Hot Lead</div><div style="color:var(--muted2)">Calendly-Link erscheint sofort → Strategie-Call buchbar</div></div>
           <div style="background:var(--gold-dim);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:10px 12px;font-size:12px"><div style="font-weight:600;color:var(--gold);margin-bottom:3px">Score 3–4 — Warm Lead</div><div style="color:var(--muted2)">Brevo Nurturing-Sequenz → Follow-up Tag 7</div></div>
           <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:12px"><div style="font-weight:600;color:var(--muted2);margin-bottom:3px">Score &lt; 3 — Kalt</div><div style="color:var(--muted)">Automatische Dankes-E-Mail → Ressourcen-PDF</div></div>
           <button onclick="openExternal('https://typeform.com','Typeform')" style="background:var(--teal-l);border:1px solid rgba(26,138,152,.2);border-radius:8px;padding:10px;color:var(--teal);font-size:12px;font-weight:600;cursor:pointer;font-family:var(--sans);margin-top:4px">Typeform-Formular öffnen →</button>
@@ -2126,7 +2126,7 @@ async function renderTermine() {
   }
   // Diese Woche Widget
   const weekCount = termine.filter(t => t.status === 'confirmed').length;
-  const egCount = termine.filter(t => t.art === 'Erstgespräch').length;
+  const egCount = termine.filter(t => t.art === 'Strategie-Call').length;
   const twEl = document.getElementById('termine-week-count');
   const egEl = document.getElementById('termine-strategie-calle');
   if(twEl) twEl.textContent = weekCount;
