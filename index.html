@@ -546,7 +546,7 @@ nav{padding:8px 0;flex:1}
       <div class="sc-body">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
           <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center"><div style="font-family:var(--serif);font-size:28px;color:var(--gold)" id="termine-week-count">5</div><div style="font-size:10px;color:var(--muted);margin-top:3px">Termine diese Woche</div></div>
-          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center"><div style="font-family:var(--serif);font-size:28px;color:var(--green)" id="termine-erstgespraeche">3</div><div style="font-size:10px;color:var(--muted);margin-top:3px">Erstgespräche</div></div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center"><div style="font-family:var(--serif);font-size:28px;color:var(--green)" id="termine-strategie-calle">3</div><div style="font-size:10px;color:var(--muted);margin-top:3px">Erstgespräche</div></div>
         </div>
         <div style="background:var(--gold-dim);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:12px;font-size:12px">
           <div style="font-weight:600;color:var(--gold);margin-bottom:6px">Calendly-Link teilen</div>
@@ -2128,13 +2128,13 @@ async function renderTermine() {
   const weekCount = termine.filter(t => t.status === 'confirmed').length;
   const egCount = termine.filter(t => t.art === 'Erstgespräch').length;
   const twEl = document.getElementById('termine-week-count');
-  const egEl = document.getElementById('termine-erstgespraeche');
+  const egEl = document.getElementById('termine-strategie-calle');
   if(twEl) twEl.textContent = weekCount;
   if(egEl) egEl.textContent = egCount;
   // Calendly link
   const linkEl = document.getElementById('calendly-link-display');
   if(linkEl && CALENDLY_USER !== 'DEIN-CALENDLY-USER') {
-    linkEl.textContent = `calendly.com/${CALENDLY_USER}/erstgespraech`;
+    linkEl.textContent = `calendly.com/${CALENDLY_USER}/strategie-call`;
   }
 }
 
@@ -2482,7 +2482,7 @@ function saveCalendlyUser() {
   if(!val) { showToast('⚠️ Bitte Calendly Username eingeben'); return; }
   CALENDLY_USER = val;
   localStorage.setItem('tc_calendly_user', val);
-  document.getElementById('calendly-link-display') && (document.getElementById('calendly-link-display').textContent = `calendly.com/${val}/erstgespraech`);
+  document.getElementById('calendly-link-display') && (document.getElementById('calendly-link-display').textContent = `calendly.com/${val}/strategie-call`);
   showToast(`✅ Calendly Username "${val}" gespeichert!`);
 }
 function saveDocusealId() {
@@ -2528,7 +2528,7 @@ function copyPortalUrl() {
   navigator.clipboard?.writeText(window.location.href).then(()=>showToast('🔗 Portal-URL kopiert!')).catch(()=>showToast('URL: ' + window.location.href));
 }
 function copyCalendlyLink() {
-  const link = `calendly.com/${CALENDLY_USER}/erstgespraech`;
+  const link = `calendly.com/${CALENDLY_USER}/strategie-call`;
   navigator.clipboard?.writeText('https://'+link).then(()=>showToast('🔗 Calendly-Link kopiert!')).catch(()=>showToast('Link: '+link));
 }
 function openExternalTool(name, url) {
@@ -2549,7 +2549,7 @@ function loadCalendly() {
     go('integrationen', document.querySelector('[data-view=integrationen]'));
     return;
   }
-  const url = `https://calendly.com/${CALENDLY_USER}/erstgespraech?hide_event_type_details=1&background_color=07090D&text_color=EDE9E0&primary_color=C9A84C`;
+  const url = `https://calendly.com/${CALENDLY_USER}/strategie-call?hide_event_type_details=1&background_color=07090D&text_color=EDE9E0&primary_color=C9A84C`;
   c.innerHTML = `<div class="calendly-inline-widget" data-url="${url}" style="min-width:320px;height:660px;border-radius:var(--r-lg);overflow:hidden"></div>`;
   const s = document.createElement('script'); s.src='https://assets.calendly.com/assets/external/widget.js'; s.async=true; document.head.appendChild(s);
   showToast('📅 Calendly wird geladen…');
